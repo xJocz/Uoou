@@ -1,59 +1,33 @@
 
-    
-    // google.charts.load('current', {'packages':['bar']});
-    // google.charts.setOnLoadCallback(drawStuff);
-
-    // function drawStuff() {
-    // var data = new google.visualization.arrayToDataTable([
-    //     ['Opening Move', 'Percentage'],
-    //     ["SP", 44],
-    //     ["MG", 31],
-    //     ["SS", 12],
-    //     ["GT", 10],
-    //     ['AM', 3]
-    // ]);
-
-    // var options = {
-    //     title: 'Chess opening moves',
-    //     width: 540,
-    //     legend: { position: 'none' },
-    //     chart: { title: 'Chess opening moves',
-    //             subtitle: 'popularity by percentage'},
-    //     bars: 'horizontal',
-    //     // Required for Material Bar Charts.
-    //     axes: {
-    //     x: {
-    //         0: { side: 'top', label: 'Percentage'} // Top x-axis.
-    //     }
-    //     },
-    //     bar: { groupWidth: "90%" }
-    // };
-
-    // var chart = new google.charts.Bar(document.getElementById('top_x_div'));
-    // chart.draw(data, options);
-    // };
-
     google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawStuff);
+
+      let dataGraph = [];
+      graphConfig = '';
+
+      function onLoad() {
+        for (let index = 1; index <= 26; index++) {
+          
+          dataGraph.push([
+            document.getElementById('state' + index).innerText,
+            document.getElementById('resultCases' + index).innerText,
+            document.getElementById('resultDies' + index).innerText
+          ])
+        }
+        getDataGraph()
+      }
+
+      function getDataGraph() {
+        for (let index = 0; index < dataGraph.length; index++) {
+          graphConfig += '[' + dataGraph[index][0] + ',' + dataGraph[index][1] + ',' + dataGraph[index][2] +'],';
+        }
+        console.log(graphConfig)
+      }
 
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
           ['', 'Contaminados', 'Mortes'],
-          ['SP', 2014529, 58873],
-          ['MG', 1014529, 258873],
-          ['RJ', 1514529, 158873],
-          ['RR', 201452, 58873],
-          ['AC', 20145, 358873],
-          ['SP', 2014529, 58873],
-          ['MG', 1014529, 258873],
-          ['RJ', 1514529, 158873],
-          ['RR', 201452, 58873],
-          ['AC', 20145, 358873],
-          ['SP', 2014529, 58873],
-          ['MG', 1014529, 258873],
-          ['RJ', 1514529, 158873],
-          ['RR', 201452, 58873],
-          ['AC', 20145, 358873]
+          ['','','']
         ]);
 
         var options = {

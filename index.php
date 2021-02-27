@@ -1,5 +1,7 @@
 <?php
     require './controllers/main.php';
+    $count = 1;
+    $countDies = 1;
 ?>
 
 <!doctype html>
@@ -16,12 +18,13 @@
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/custom.css">
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://kit.fontawesome.com/44b7d6d5c2.js" crossorigin="anonymous"></script>
   <script src="./js/app.js"></script>
 
   <title>Uoou</title>
 </head>
 
-<body>
+<body onload="onLoad()">
   <div class="container-fluid" style="margin-top: 8rem;">
     <div class="row">
       <!-- Table column: placed on left -->
@@ -56,104 +59,36 @@
       <!-- Cards column: placed on center -->
       <div class="col-md-5 col-lg-5 col-xl-5">
         <div class="card-group justify-content-center">
-          <div class="card-item">
-            <div class="card bg-light mb-3 rounded shadow">
-              <div class="card-header bg-success text-white">
-                <h2>SP</h2>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-right"><i class="fas fa-virus mr-2"></i>2014529</h5>
-                <p class="card-text text-right"><i class="fas fa-cross text-danger mr-2"></i>58873</p>
-              </div>
-            </div>
-          </div>
+          <?php
+            foreach($data->infectedByRegion as $resultCases) {
+              echo '<div class="card-item">
+                        <div class="card bg-light mb-3 rounded shadow">
+                        <div class="card-header bg-success text-white">
+                          <h2 id="state' . $count .'">' . $resultCases->state . '</h2>
+                          </div>
+                        <div class="card-body">
+                        <h5 class="card-title text-right" id="resultCases' . $count .'"><i class="fas fa-virus mr-2"></i>' . $resultCases->count . '</h5>';
+              $count++;
+              foreach($data->deceasedByRegion as $resultDies) {
+                if ($resultCases->state == $resultDies->state) {
+                  $countDies;
+                  echo '<p class="card-text text-right" id="resultDies' . $countDies .'"><i class="fas fa-cross text-danger mr-2"></i>' . $resultDies->count . '</p>
+                      </div>
+                    </div>
+                  </div>';
+                  $countDies++;
+              }
 
-          <div class="card-item">
-            <div class="card bg-light mb-3 rounded shadow">
-              <div class="card-header bg-success text-white">
-                <h2>SP</h2>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-right"><i class="fas fa-virus mr-2"></i></i>2014529</h5>
-                <p class="card-text text-right"><i class="fas fa-cross text-danger mr-2"></i>>58873</p>
-              </div>
-            </div>
-          </div>
-          <div class="card-item">
-            <div class="card bg-light mb-3 rounded shadow">
-              <div class="card-header bg-success text-white">
-                <h2>SP</h2>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-right"><i class="fas fa-virus mr-2"></i></i>2014529</h5>
-                <p class="card-text text-right"><i class="fas fa-cross text-danger mr-2"></i>>58873</p>
-              </div>
-            </div>
-          </div>
-          <div class="card-item">
-            <div class="card bg-light mb-3 rounded shadow">
-              <div class="card-header bg-success text-white">
-                <h2>SP</h2>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-right"><i class="fas fa-virus mr-2"></i></i>2014529</h5>
-                <p class="card-text text-right"><i class="fas fa-cross text-danger mr-2"></i>>58873</p>
-              </div>
-            </div>
-          </div>
-          <div class="card-item">
-            <div class="card bg-light mb-3 rounded shadow">
-              <div class="card-header bg-success text-white">
-                <h2>SP</h2>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-right"><i class="fas fa-virus mr-2"></i></i>2014529</h5>
-                <p class="card-text text-right"><i class="fas fa-cross text-danger mr-2"></i>>58873</p>
-              </div>
-            </div>
-          </div>
-          <div class="card-item">
-            <div class="card bg-light mb-3 rounded shadow">
-              <div class="card-header bg-success text-white">
-                <h2>SP</h2>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-right"><i class="fas fa-virus mr-2"></i></i>2014529</h5>
-                <p class="card-text text-right"><i class="fas fa-cross text-danger mr-2"></i>>58873</p>
-              </div>
-            </div>
-          </div>
-          <div class="card-item">
-            <div class="card bg-light mb-3 rounded shadow">
-              <div class="card-header bg-success text-white">
-                <h2>SP</h2>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-right"><i class="fas fa-virus mr-2"></i></i>2014529</h5>
-                <p class="card-text text-right"><i class="fas fa-cross text-danger mr-2"></i>>58873</p>
-              </div>
-            </div>
-          </div>
-          <div class="card-item">
-            <div class="card bg-light mb-3 rounded shadow">
-              <div class="card-header bg-success text-white">
-                <h2>SP</h2>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title text-right"><i class="fas fa-virus mr-2"></i></i>2014529</h5>
-                <p class="card-text text-right"><i class="fas fa-cross text-danger mr-2"></i>>58873</p>
-              </div>
-            </div>
-          </div>
-
-
+            }
+          }
+        ?>
         </div>
       </div>
-      <!-- Graph column: placed on right -->
-      <div class="col-md-4 col-lg-4 col-xl-4">
-        <div id="dual_x_div" class="graph"></div>
-      </div>
+    <!-- Graph column: placed on right -->
+    <div class="col-md-4 col-lg-4 col-xl-4">
+      <div id="dual_x_div" class="graph"></div>
     </div>
+  </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
