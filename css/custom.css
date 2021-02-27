@@ -1,0 +1,27 @@
+.col-content {
+    overflow-y: scroll;
+    height: 60vh !important;
+  }
+  
+  .graph {
+    height: 430px !important;
+  }
+
+  .fa-virus {
+    color: blueviolet !important;
+  }
+
+  .card-header {
+    height: 60px !important;
+  }
+
+  .graph {
+    max-height: fit-content !important;
+    max-width: fit-content !important;
+  }
+
+  @media (max-width: 767.98px) { 
+    .col-cards{
+      display: none;
+    }
+   }
