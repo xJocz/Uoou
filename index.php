@@ -1,3 +1,7 @@
+<?php
+    require './controllers/main.php';
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -12,7 +16,6 @@
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/custom.css">
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="https://kit.fontawesome.com/44b7d6d5c2.js" crossorigin="anonymous"></script>
   <script src="./js/app.js"></script>
 
   <title>Uoou</title>
@@ -32,51 +35,21 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">SP</th>
-              <td>5044123</td>
-              <td>5021</td>
-            </tr>
-            <tr>
-              <th scope="row">SP</th>
-              <td>5044123</td>
-              <td>5021</td>
-            </tr>
-            <tr>
-              <th scope="row">SP</th>
-              <td>5044123</td>
-              <td>5021</td>
-            </tr>
-            <tr>
-              <th scope="row">SP</th>
-              <td>5044123</td>
-              <td>5021</td>
-            </tr>
-            <tr>
-              <th scope="row">SP</th>
-              <td>5044123</td>
-              <td>5021</td>
-            </tr>
-            <tr>
-              <th scope="row">SP</th>
-              <td>5044123</td>
-              <td>5021</td>
-            </tr>
-            <tr>
-              <th scope="row">SP</th>
-              <td>5044123</td>
-              <td>5021</td>
-            </tr>
-            <tr>
-              <th scope="row">SP</th>
-              <td>5044123</td>
-              <td>5021</td>
-            </tr>
-            <tr>
-              <th scope="row">SP</th>
-              <td>5044123</td>
-              <td>5021</td>
-            </tr>
+            <?php
+              foreach($data->infectedByRegion as $resultCases) {
+                echo '
+                  <tr>
+                    <th scope="row">'. $resultCases->state . '</th>
+                    <td>'. $resultCases->count . '</td>';
+
+              foreach($data->deceasedByRegion as $resultDies){
+                if ($resultCases->state == $resultDies->state) {
+                echo '<td>' . $resultDies->count . '</td>
+                  </tr>';
+                  }
+                };
+              };
+            ?>
           </tbody>
         </table>
       </div>
@@ -94,7 +67,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="card-item">
             <div class="card bg-light mb-3 rounded shadow">
               <div class="card-header bg-success text-white">
@@ -160,7 +133,8 @@
                 <p class="card-text text-right"><i class="fas fa-cross text-danger mr-2"></i>>58873</p>
               </div>
             </div>
-          </div><div class="card-item">
+          </div>
+          <div class="card-item">
             <div class="card bg-light mb-3 rounded shadow">
               <div class="card-header bg-success text-white">
                 <h2>SP</h2>
@@ -182,7 +156,6 @@
     </div>
   </div>
 
-
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
@@ -190,6 +163,22 @@
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script>
 </body>
-<!-- <div class="card bg-light mb-3 rounded shadow" style="width: 12rem ;max-width: 18rem; height: 10rem;"> -->
+
+<!-- <?php
+                  foreach($data->infectedByRegion as $resultCases) {
+                    echo '
+                      <tr>
+                        <th scope="row">'. $resultCases->state . '</th>
+                        <td>'. $resultCases->count . '</td>';
+  
+                  foreach($data->deceasedByRegion as $resultDies){
+                    if ($resultCases->state == $resultDies->state) {
+                    echo '<td>' . $resultDies->count . '</td>
+                      </tr>';
+                      }
+                    };
+                  };
+                ?> -->
+
 
 </html>
