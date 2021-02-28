@@ -2,37 +2,39 @@
     google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawStuff);
 
-      let dataGraph = [];
-      graphConfig = '';
+      let graphConfig = [];
 
       function onLoad() {
         for (let index = 1; index <= 26; index++) {
           
-          dataGraph.push([
+          graphConfig.push([
             document.getElementById('state' + index).innerText,
-            document.getElementById('resultCases' + index).innerText,
-            document.getElementById('resultDies' + index).innerText
+            parseInt(document.getElementById('resultCases' + index).innerText),
+            parseInt(document.getElementById('resultDies' + index).innerText)
           ])
-        }
-        getDataGraph()
-      }
-
-      function getDataGraph() {
-        for (let index = 0; index < dataGraph.length; index++) {
-          graphConfig += '[' + dataGraph[index][0] + ',' + dataGraph[index][1] + ',' + dataGraph[index][2] +'],';
         }
         console.log(graphConfig)
       }
 
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
-          ['', 'Contaminados', 'Mortes'],
-          ['','','']
-        ]);
+          ['TOP 10 Estados com mais casos', 'Contaminados', 'Mortes'],
+          graphConfig[0],
+          graphConfig[1],
+          graphConfig[2],
+          graphConfig[3],
+          graphConfig[4],
+          graphConfig[5],
+          graphConfig[6],
+          graphConfig[7],
+          graphConfig[8],
+          graphConfig[9],
+          graphConfig[10],
+        ])
 
         var options = {
-          width: 0,
-          height: 500,
+          width: 600,
+          height: 800,
           chart: {
             title: 'Covid progression',
             subtitle: 'Last update: 24/02/2021 17:45'
