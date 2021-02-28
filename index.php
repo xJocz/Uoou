@@ -2,6 +2,7 @@
     require './controllers/main.php';
     $count = 1;
     $countDies = 1;
+    $countToTable = 0;
 ?>
 
 <!doctype html>
@@ -26,9 +27,31 @@
 
 <body onload="onLoad()">
   <div class="container-fluid" style="margin-top: 8rem;">
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Gráfico do estado selecionado</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="modal_div"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <div class="row">
       <!-- Table column: placed on left -->
-      <div class="col-md-3">
+      <div class="col-sm-2">
         <table class="table table-hover table-bordered shadow">
           <thead class="bg-success text-white">
             <tr>
@@ -41,10 +64,10 @@
             <?php
               foreach($data->infectedByRegion as $resultCases) {
                 echo '
-                  <tr>
+                  <tr style="cursor: pointer" onclick="openModal('. $countToTable . ')">
                     <th scope="row">'. $resultCases->state . '</th>
                     <td>'. $resultCases->count . '</td>';
-
+                  $countToTable++;
               foreach($data->deceasedByRegion as $resultDies){
                 if ($resultCases->state == $resultDies->state) {
                 echo '<td>' . $resultDies->count . '</td>
@@ -57,8 +80,8 @@
         </table>
       </div>
       <!-- Cards column: placed on center -->
-      <div class="col-md-5 col-lg-5 col-xl-5">
-        <div class="card-group justify-content-center">
+      <div class="col-sm-6">
+        <div class="card-group mx-auto">
           <?php
             foreach($data->infectedByRegion as $resultCases) {
               echo '<div class="card-item">
@@ -85,7 +108,7 @@
         </div>
       </div>
     <!-- Graph column: placed on right -->
-    <div class="col-md-4 col-lg-4 col-xl-4">
+    <div class="col-sm-4">
       <div id="dual_x_div" class="graph"></div>
     </div>
   </div>
@@ -98,22 +121,4 @@
     integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
     crossorigin="anonymous"></script>
 </body>
-
-<!-- <?php
-                  foreach($data->infectedByRegion as $resultCases) {
-                    echo '
-                      <tr>
-                        <th scope="row">'. $resultCases->state . '</th>
-                        <td>'. $resultCases->count . '</td>';
-  
-                  foreach($data->deceasedByRegion as $resultDies){
-                    if ($resultCases->state == $resultDies->state) {
-                    echo '<td>' . $resultDies->count . '</td>
-                      </tr>';
-                      }
-                    };
-                  };
-                ?> -->
-
-
 </html>

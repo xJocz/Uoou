@@ -13,7 +13,6 @@
             parseInt(document.getElementById('resultDies' + index).innerText)
           ])
         }
-        console.log(graphConfig)
       }
 
       function drawStuff() {
@@ -39,13 +38,13 @@
             title: 'Covid progression',
             subtitle: 'Last update: 24/02/2021 17:45'
           },
-          bars: 'horizontal', // Required for Material Bar Charts.
+          bars: 'horizontal',
           colors: ['blueviolet', 'red'],
 
           axes: {
             x: {
-              distance: {label: 'Quantidade'}, // Bottom x-axis.
-              brightness: {side: 'top', label: 'Gráfico geral'} // Top x-axis.
+              distance: {label: 'Quantidade'},
+              brightness: {side: 'top', label: 'Gráfico geral'}
             }
           }
         };
@@ -53,3 +52,39 @@
       var chart = new google.charts.Bar(document.getElementById('dual_x_div'));
       chart.draw(data, options);
     };
+
+    function openModal(id) {
+
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['', 'Contaminados', 'Mortes'],
+          graphConfig[id],
+        ])
+
+        var options = {
+          width: 700,
+          height: 600,
+          chart: {
+            title: 'Progressão do covid em: ' + graphConfig[id][0],
+          },
+          bars: 'vertical',
+          colors: ['blueviolet', 'red'],
+
+          axes: {
+            x: {
+              distance: {label: 'Quantidade'},
+              brightness: {side: 'top', label: 'Gráfico geral'}
+            }
+          }
+        };
+      
+      var chart = new google.charts.Bar(document.getElementById('modal_div'));
+      chart.draw(data, options);
+      
+      $('#exampleModal').modal('show')
+    }
+  }
+
