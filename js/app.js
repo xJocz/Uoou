@@ -31,8 +31,10 @@
           graphConfig[10],
         ])
 
+        
+
         var options = {
-          width: 600,
+          width: 500,
           height: 800,
           chart: {
             title: 'Covid progression',
@@ -51,12 +53,41 @@
 
       var chart = new google.charts.Bar(document.getElementById('dual_x_div'));
       chart.draw(data, options);
+
+      function myFunction(){
+        var divWidth = document.getElementById('dual_x_div').offsetWidth;
+        
+        var options = {
+          width: divWidth,
+          height: 800,
+          chart: {
+            title: 'Covid progression',
+            subtitle: 'Last update: 24/02/2021 17:45'
+          },
+          bars: 'horizontal',
+          colors: ['blueviolet', 'red'],
+
+          axes: {
+            x: {
+              distance: {label: 'Quantidade'},
+              brightness: {side: 'top', label: 'Gráfico geral'}
+            }
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('dual_x_div'));
+        chart.draw(data, options);
+      }
+    
+      document.body.onresize = function() {myFunction()};
     };
 
     function openModal(id) {
 
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawStuff);
+
+      let clientWidth = document.body.clientWidth > 991 ? 766 : 466;
 
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
@@ -65,12 +96,12 @@
         ])
 
         var options = {
-          width: 700,
-          height: 600,
+          width: clientWidth,
+          height: 400,
           chart: {
             title: 'Progressão do covid em: ' + graphConfig[id][0],
           },
-          bars: 'vertical',
+          bars: 'horizontal',
           colors: ['blueviolet', 'red'],
 
           axes: {
@@ -85,6 +116,10 @@
       chart.draw(data, options);
       
       $('#exampleModal').modal('show')
+      
     }
-  }
 
+  }
+  
+  
+  

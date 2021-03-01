@@ -1,8 +1,5 @@
 <?php
     require './controllers/main.php';
-    $count = 1;
-    $countDies = 1;
-    $countToTable = 0;
 ?>
 
 <!doctype html>
@@ -51,37 +48,39 @@
 
     <div class="row">
       <!-- Table column: placed on left -->
-      <div class="col-sm-2">
-        <table class="table table-hover table-bordered shadow">
-          <thead class="bg-success text-white">
-            <tr>
-              <th scope="col">UF</th>
-              <th scope="col">Casos</th>
-              <th scope="col">Mortes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-              foreach($data->infectedByRegion as $resultCases) {
-                echo '
-                  <tr style="cursor: pointer" onclick="openModal('. $countToTable . ')">
-                    <th scope="row">'. $resultCases->state . '</th>
-                    <td>'. $resultCases->count . '</td>';
-                  $countToTable++;
-              foreach($data->deceasedByRegion as $resultDies){
-                if ($resultCases->state == $resultDies->state) {
-                echo '<td>' . $resultDies->count . '</td>
-                  </tr>';
-                  }
+      <div class="col-sm-4 col-md-4 col-lg-3">
+        <div class="col-table tb-group table-responsive">
+          <table class="table table-hover table-bordered shadow">
+            <thead class="bg-success text-white">
+              <tr>
+                <th scope="col">UF</th>
+                <th scope="col">Casos</th>
+                <th scope="col">Mortes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+                foreach($data->infectedByRegion as $resultCases) {
+                  echo '
+                    <tr style="cursor: pointer" onclick="openModal('. $countToTable . ')">
+                      <th scope="row">'. $resultCases->state . '</th>
+                      <td>'. $resultCases->count . '</td>';
+                    $countToTable++;
+                foreach($data->deceasedByRegion as $resultDies){
+                  if ($resultCases->state == $resultDies->state) {
+                  echo '<td>' . $resultDies->count . '</td>
+                    </tr>';
+                    }
+                  };
                 };
-              };
-            ?>
-          </tbody>
-        </table>
+              ?>
+            </tbody>
+          </table>
+        </div>
       </div>
       <!-- Cards column: placed on center -->
-      <div class="col-sm-6">
-        <div class="card-group mx-auto">
+      <div class="col-card-group col-lg-5 d-flex">
+        <div class="card-group d-flex flex-wrap mx-auto justify-content-center">
           <?php
             foreach($data->infectedByRegion as $resultCases) {
               echo '<div class="card-item">
@@ -90,12 +89,12 @@
                           <h2 id="state' . $count .'">' . $resultCases->state . '</h2>
                           </div>
                         <div class="card-body">
-                        <h5 class="card-title text-right" id="resultCases' . $count .'"><i class="fas fa-virus mr-2"></i>' . $resultCases->count . '</h5>';
+                        <h6 class="card-title text-right" id="resultCases' . $count .'"><i class="fas fa-virus mr-1"></i>' . $resultCases->count . '</h6>';
               $count++;
               foreach($data->deceasedByRegion as $resultDies) {
                 if ($resultCases->state == $resultDies->state) {
                   $countDies;
-                  echo '<p class="card-text text-right" id="resultDies' . $countDies .'"><i class="fas fa-cross text-danger mr-2"></i>' . $resultDies->count . '</p>
+                  echo '<p class="card-text text-right" id="resultDies' . $countDies .'"><i class="fas fa-cross text-danger mr-1"></i>' . $resultDies->count . '</p>
                       </div>
                     </div>
                   </div>';
@@ -108,8 +107,9 @@
         </div>
       </div>
     <!-- Graph column: placed on right -->
-    <div class="col-sm-4">
-      <div id="dual_x_div" class="graph"></div>
+    <div class="col-sm-8 col-md-8 col-lg-4 ">
+      <div id="dual_x_div" class="graph-group d-flex justify-content-center"></div>
+      <!-- <div style="background-color: red; height: auto; width: auto">fsdfsdfs</div> -->
     </div>
   </div>
   </div>
