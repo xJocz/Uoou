@@ -19,20 +19,6 @@ html {
     margin-bottom: 10px;
  }
 
- .card-group {
-    border: 1px solid red;
- }
-
-@media (max-width: 991.98px) { 
-   .col-card-group {
-      display: none !important;
-   }
- }
-
-.col-table {
+/* .col-table {
    min-width: 100% !important;
-}
-
-#modal-div {
-   width: 100% !important;
-}
+} */

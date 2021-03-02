@@ -35,8 +35,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <div id="modal_div"></div>
+          <div id="modal-body" class="modal-body">
+            <div id="modal_div" onresize="resizeModalGraph()"></div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -48,7 +48,7 @@
 
     <div class="row">
       <!-- Table column: placed on left -->
-      <div class="col-sm-4 col-md-4 col-lg-3">
+      <div class="col-sm-6 col-lg-3">
         <div class="col-table tb-group table-responsive">
           <table class="table table-hover table-bordered shadow">
             <thead class="bg-success text-white">
@@ -79,11 +79,11 @@
         </div>
       </div>
       <!-- Cards column: placed on center -->
-      <div class="col-card-group col-lg-5 d-flex">
-        <div class="card-group d-flex flex-wrap mx-auto justify-content-center">
+      <div class="d-none d-xl-block col-xl-5">
+        <div class="card-group justify-content-center">
           <?php
             foreach($data->infectedByRegion as $resultCases) {
-              echo '<div class="card-item">
+              echo '<div class="card-item justify-space-around">
                         <div class="card bg-light mb-3 rounded shadow">
                         <div class="card-header bg-success text-white">
                           <h2 id="state' . $count .'">' . $resultCases->state . '</h2>
@@ -107,7 +107,7 @@
         </div>
       </div>
     <!-- Graph column: placed on right -->
-    <div class="col-sm-8 col-md-8 col-lg-4 ">
+    <div class="col-sm-6 col-lg-9 col-xl-4">
       <div id="dual_x_div" class="graph-group d-flex justify-content-center"></div>
       <!-- <div style="background-color: red; height: auto; width: auto">fsdfsdfs</div> -->
     </div>
