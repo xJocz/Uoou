@@ -29,10 +29,10 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header bg-success text-white">
             <h5 class="modal-title" id="exampleModalLabel">Gráfico do estado selecionado</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span class="text-white" aria-hidden="true">&times;</span>
             </button>
           </div>
           <div id="modal-body" class="modal-body">
@@ -84,13 +84,14 @@
           <?php
             foreach($data->infectedByRegion as $resultCases) {
               echo '<div class="card-item justify-space-around">
-                        <div class="card bg-light mb-3 rounded shadow">
+                        <div class="card bg-light mb-3 rounded shadow" onclick="openModal('. $countToCard . ')" style="cursor: pointer;">
                         <div class="card-header bg-success text-white">
-                          <h2 id="state' . $count .'">' . $resultCases->state . '</h2>
+                          <h4 id="state' . $count .'">' . $resultCases->state . '</h4>
                           </div>
-                        <div class="card-body">
+                        <div class="card-body cards">
                         <h6 class="card-title text-right" id="resultCases' . $count .'"><i class="fas fa-virus mr-1"></i>' . $resultCases->count . '</h6>';
               $count++;
+              $countToCard++;
               foreach($data->deceasedByRegion as $resultDies) {
                 if ($resultCases->state == $resultDies->state) {
                   $countDies;
@@ -108,8 +109,30 @@
       </div>
     <!-- Graph column: placed on right -->
     <div class="col-sm-6 col-lg-9 col-xl-4">
-      <div id="dual_x_div" class="graph-group d-flex justify-content-center"></div>
-      <!-- <div style="background-color: red; height: auto; width: auto">fsdfsdfs</div> -->
+      <div class="row">
+        <div class="col">
+            <div class="card bg-light shadow">
+              <div class="card-body">
+                <h5 class="card-title">Ultimo update da base de dados: </h5>
+                <p class="card-text"><?php $date=date_create($data->lastUpdatedAtApify);
+                  echo date_format($date,"d/m/Y H:i:s"); ?></p>
+              </div>
+            </div>
+        </div>
+        <div class="col">
+          <div class="card bg-light shadow">
+            <div class="card-body">
+              <h5 class="card-title">Data de consulta: </h5>
+              <p class="card-text"><?php
+                echo date("d/m/Y H:i:s"); ?></p>
+            </div>
+          </div>
+      </div>
+      </div>
+      <div class="card my-3 shadow">
+        <div class="card-body graph">
+          <div id="dual_x_div" class="graph-group my-3 d-flex justify-content-center"></div>
+        </div>
     </div>
   </div>
   </div>

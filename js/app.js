@@ -36,7 +36,6 @@ function drawStuff() {
     height: 720,
     chart: {
       title: 'Covid progression',
-      subtitle: 'Last update: 24/02/2021 17:45'
     },
     bars: 'horizontal',
     colors: ['blueviolet', 'red'],
@@ -100,6 +99,8 @@ function openModal(id) {
 
     var chartModal = new google.charts.Bar(document.getElementById('modal_div'));
     chartModal.draw(dataModal, optionsModal);
+
+    // This function was created to resize the chart obtained from API
 
     // function resizeModalGraph() {
     //   var divModalWidth = document.getElementById('modal_div').offsetWidth;

@@ -7,7 +7,7 @@ html {
   }
 
  .card-header {
-    height: 60px !important;
+    height: 48px !important;
   }
 
  .card-item {
@@ -19,6 +19,16 @@ html {
     margin-bottom: 10px;
  }
 
-/* .col-table {
+.col-table {
    min-width: 100% !important;
-} */
+   overflow-x: scroll;
+}
+
+.card-header + .card-body:hover {
+   background-color: lightgrey !important;
+   transition: 0.3s;
+}
+
+tr {
+   transition: 0.3s !important;
+}
