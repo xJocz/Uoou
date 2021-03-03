@@ -1,12 +1,12 @@
 <?php
     require './controllers/main.php';
+    require './modal.html';
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
-
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,28 +24,6 @@
 
 <body onload="onLoad()">
   <div class="container-fluid" style="margin-top: 8rem;">
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-success text-white">
-            <h5 class="modal-title" id="exampleModalLabel">Gráfico do estado selecionado</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span class="text-white" aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div id="modal-body" class="modal-body">
-            <div id="modal_div" onresize="resizeModalGraph()"></div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
     <div class="row">
       <!-- Table column: placed on left -->
       <div class="col-sm-6 col-lg-3">
@@ -101,47 +79,51 @@
                   </div>';
                   $countDies++;
               }
-
             }
           }
         ?>
         </div>
       </div>
-    <!-- Graph column: placed on right -->
-    <div class="col-sm-6 col-lg-9 col-xl-4">
-      <div class="row">
-        <div class="col">
+      <!-- Graph column: placed on right -->
+      <div class="col-sm-6 col-lg-9 col-xl-4">
+        <div class="row">
+          <div class="col">
             <div class="card bg-light shadow">
-              <div class="card-body">
-                <h5 class="card-title">Ultimo update da base de dados: </h5>
-                <p class="card-text"><?php $date=date_create($data->lastUpdatedAtApify);
-                  echo date_format($date,"d/m/Y H:i:s"); ?></p>
+              <div class="card-body card-info">
+                <h5 class=" card-title">Ultimo update da base de dados: </h5>
+                <p class="card-text">
+                  <?php $date=date_create($data->lastUpdatedAtApify);
+                  echo date_format($date,"d/m/Y H:i:s"); ?>
+                </p>
               </div>
             </div>
-        </div>
-        <div class="col">
-          <div class="card bg-light shadow">
-            <div class="card-body">
-              <h5 class="card-title">Data de consulta: </h5>
-              <p class="card-text"><?php
-                echo date("d/m/Y H:i:s"); ?></p>
+          </div>
+          <div class="col">
+            <div class="card bg-light shadow">
+              <div class="card-body card-info">
+                <h5 class="info card-title">Data de consulta: </h5>
+                <p class="card-text">
+                  <?php
+                echo date("d/m/Y H:i:s"); ?>
+                </p>
+              </div>
             </div>
           </div>
-      </div>
-      </div>
-      <div class="card my-3 shadow">
-        <div class="card-body graph">
-          <div id="dual_x_div" class="graph-group my-3 d-flex justify-content-center"></div>
         </div>
+        <div class="card my-3 shadow">
+          <div class="card-body graph">
+            <div id="dual_x_div" class="graph-group my-3 d-flex justify-content-center"></div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+      crossorigin="anonymous"></script>
 </body>
+
 </html>

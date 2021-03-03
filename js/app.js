@@ -5,7 +5,7 @@ google.charts.setOnLoadCallback(drawStuff);
 let graphConfig = [];
 
 function onLoad() {
-  for (let index = 1; index <= 26; index++) {
+  for (let index = 1; index <= 27; index++) {
 
     graphConfig.push([
       document.getElementById('state' + index).innerText,
