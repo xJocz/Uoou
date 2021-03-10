@@ -27,8 +27,7 @@ function drawStuff() {
     graphConfig[6],
     graphConfig[7],
     graphConfig[8],
-    graphConfig[9],
-    graphConfig[10],
+    graphConfig[9]
   ])
 
   var options = {
